@@ -1,0 +1,34 @@
+class Solution(object):
+    def myAtoi(self, s):
+        """
+        :type s: str
+        :type s: int
+        :rtype: int
+        """
+        # Step 1: Skip whitespace
+        i = 0
+        while i < len(s) and s[i] == ' ':
+            i += 1
+        
+        # Step 2: Handle sign
+        sign = 1
+        if i < len(s) and s[i] in '+-':
+            sign = 1 if s[i] == '+' else -1
+            i += 1
+        
+        # Step 3: Read digits (skip leading zeros)
+        result = 0
+        while i < len(s) and s[i].isdigit():
+            digit = int(s[i])
+            result = result * 10 + digit
+            i += 1
+        
+        # Step 4: Apply sign and clamp to 32-bit range
+        result *= sign
+        INT_MIN, INT_MAX = -2**31, 2**31 - 1
+        if result < INT_MIN:
+            return INT_MIN
+        if result > INT_MAX:
+            return INT_MAX
+        
+        return result
