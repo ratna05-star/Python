@@ -1,0 +1,19 @@
+from collections import deque
+
+n = int(input())
+d = deque()
+
+for _ in range(n):
+    line = input().split()
+    operation = line[0]
+    
+    if operation == 'append':
+        d.append(line[1])
+    elif operation == 'appendleft':
+        d.appendleft(line[1])
+    elif operation == 'pop':
+        d.pop()
+    elif operation == 'popleft':
+        d.popleft()
+
+print(' '.join(d)) 
